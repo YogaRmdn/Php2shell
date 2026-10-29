@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "name": "English",
+    "code": "en",
+    "fallback": null
+  },
+
+  "app": {
+    "title": "P H P 2 S H E L L",
+    "subtitle": "unified toolkit",
+    "tagline": "PHP session.upload_progress stale-state UAF  ->  unauthenticated RCE",
+    "tested": "tested here",
+    "detected": "detected",
+    "full_chain": "full chain",
+    "diff_chain": "different chain, not executed",
+    "fix_floor": "fix-floor",
+    "last_vulnerable": "last vulnerable",
+    "mode": "mode",
+    "ja3": "ja3",
+    "delay": "delay",
+    "stealth": "stealth",
+    "stealth_on": "curl_cffi JA3 impersonate",
+    "stealth_off": "urllib fallback - EASILY DETECTED (pip install curl_cffi)",
+    "chain_engine": "chain engine",
+    "lang_label": "language",
+    "language_switch_hint": "switch language: --lang id | --lang en   (or env P2S_LANG)"
+  },
+
+  "usage": {
+    "modes": "modes",
+    "quick": "quick",
+    "help": "help",
+    "guards": "guards & warnings",
+    "details": "details"
+  },
+
+  "modes": {
+    "scan": "read targets.txt -> detect -> preflight -> (optional) exploit -> report",
+    "detect": "one/more URLs, detection only (non-destructive)",
+    "preflight": "single URL, exploit readiness score",
+    "exploit": "single URL, run the internal chain engine (READY + confirmation)",
+    "shell": "password-protected webshell GENERATOR (not an uploader)",
+    "builds": "show which PHP builds are RCE / leak-only / unproven",
+    "advisories": "show CVE advisories and fix floors",
+    "version": "check version against public release"
+  },
+
+  "verdict": {
+    "vulnerable": "vulnerable",
+    "patched": "patched",
+    "eol": "eol",
+    "unknown": "unknown",
+    "inconclusive": "inconclusive",
+    "blocked": "blocked",
+    "ready": "READY",
+    "not_ready": "NOT READY"
+  },
+
+  "state": {
+    "on": "on",
+    "off": "off",
+    "unknown": "unknown",
+    "yes": "yes",
+    "no": "no",
+    "none": "none"
+  },
+
+  "detect": {
+    "probing": "probing",
+    "php_version": "php version",
+    "server": "server",
+    "sapi": "sapi",
+    "reachable": "reachable",
+    "upload_progress": "upload_progress",
+    "display_errors": "display_errors",
+    "memory_limit": "memory_limit",
+    "oom_probe": "oom probe",
+    "oom_enabled": "enabled (verdict still unknown/eol)",
+    "oom_disabled": "disabled (--no-oom)",
+    "oom_skipped_patched": "skipped (read version >= fix-floor)",
+    "oom_verdict": "oom signal",
+    "oom_fatal_parser": "fatal-in-parser",
+    "oom_empty_500": "empty-500-differential",
+    "oom_worker_abort": "worker-abort (502/503/504)",
+    "oom_inconclusive_high_limit": "memory_limit too high to reach OOM (inconclusive)",
+    "oom_post_max_guard": "post_max_size guard (NOT a bug signal)",
+    "reading_version": "reading php version",
+    "done": "detection complete",
+    "failed": "detection failed"
+  },
+
+  "preflight": {
+    "score": "readiness score",
+    "components": "components",
+    "blockers": "blockers",
+    "no_blockers": "no hard blockers",
+    "server_down": "server unreachable",
+    "already_patched": "readable version already patched",
+    "support_level": "support level",
+    "willing_continue": "detection is information, not a gate"
+  },
+
+  "exploit": {
+    "confirm_prompt": "target is LIVE. continue? [y/N]: ",
+    "not_ready_abort": "target NOT ready. use --force to override (still confirms).",
+    "stage": "stage",
+    "stage1": "heap leak",
+    "stage2": "libphp base leak",
+    "stage3": "fake HashTable -> zif_system",
+    "proof": "PROOF",
+    "blind": "BLIND",
+    "blind_note": "command executed, but no evidence channel on a live target",
+    "memory_limit_read": "memory_limit {mb} MiB read from target; 'big' field set to {send} MB",
+    "memory_limit_default": "memory_limit unreadable (display_errors=Off); using default 12 MB",
+    "memory_limit_too_high": "memory_limit above 512 MB - this chain will not run here",
+    "post_max_too_small": "body {mb} MB rejected by target before the script ran - post_max_size too small for stage-1",
+    "failed": "chain failed",
+    "succeeded": "chain succeeded",
+    "timeout": "total chain timeout",
+    "retries": "retries per stage",
+    "rotating_worker": "rotating worker for a fresh heap",
+    "elapsed": "elapsed"
+  },
+
+  "fence": {
+    "title": "command fence (cannot be disabled)",
+    "too_long": "command is {n} bytes, max {max} bytes",
+    "blocked_char": "blocked operator: {ch}",
+    "not_whitelisted": "command '{cmd}' is not in the whitelist",
+    "revshell_blocked": "reverse-shell primitives are blocked at runner level",
+    "default_note": "default command is 'id' (proof-of-access design)"
+  },
+
+  "shell_gen": {
+    "generating": "generating webshell",
+    "written": "written",
+    "credentials": "credentials file",
+    "bcrypt_note": "password stored as bcrypt; plaintext NOT saved in the shell",
+    "ttl": "ttl",
+    "commands_whitelist": "commands whitelist",
+    "local_test_hint": "test locally: php -l <file>   then   php -S 127.0.0.1:8099",
+    "upload_notice": "generator only - this tool does NOT upload the shell"
+  },
+
+  "scanner": {
+    "loading": "loading targets",
+    "targets": "targets",
+    "dedup": "duplicates removed",
+    "threads": "threads",
+    "scanning": "scanning",
+    "summary": "summary",
+    "empty_list": "no targets in list"
+  },
+
+  "report": {
+    "json_written": "json report written",
+    "csv_written": "csv report written",
+    "total": "total",
+    "exploited": "exploited",
+    "ready": "ready",
+    "no_results": "(no targets)"
+  },
+
+  "updater": {
+    "local": "local",
+    "remote": "remote",
+    "status": "status",
+    "message": "message",
+    "repo": "repo",
+    "current": "already the latest version",
+    "update_available": "a newer release is available",
+    "unknown": "could not check (offline / rate-limited)",
+    "source": "source",
+    "cache_note": "cached for 1 hour in out/version-check.json"
+  },
+
+  "builds": {
+    "table_head": "support table per build",
+    "php": "php",
+    "arch": "arch",
+    "support": "support",
+    "note": "note",
+    "total_line": "total {n} builds: {rce} RCE, {leak} leak-only, {no} unproven",
+    "level_rce": "RCE",
+    "level_leak": "LEAK",
+    "level_no": "NO"
+  },
+
+  "advisory": {
+    "title": "CVE advisories",
+    "cve": "cve",
+    "class": "class",
+    "trigger": "trigger",
+    "requests": "requests",
+    "status": "status",
+    "implemented": "implemented (full 0->RCE chain)",
+    "detect_only": "detect/preflight only (not executed)",
+    "patched_rebuilt": "patches were rebuilt 22 Oct 2026 - check the package BUILD DATE, not just the version string",
+    "cve_115560": "CVE-2026-115560 (session serialize_handler mismatch) is NOT closed by the fix-floor above",
+    "memory_limit_note": "memory_limit=-1 is NOT a complete mitigation (GHSA-w8hw-w9fx-j79w)",
+    "upload_progress_note": "session.upload_progress.enabled=0 only closes 109618 (+115560), NOT 109619",
+    "in_wild": "in-the-wild exploitation predates the patch (first attempts 17 Oct 2026)"
+  },
+
+  "errors": {
+    "url_scheme": "URL must start with http:// or https:// (got: {url})",
+    "unknown_mode": "unknown mode: {mode}",
+    "list_not_found": "target list not found: {path}",
+    "transport_init": "transport init failed",
+    "unexpected": "unexpected error",
+    "no_such_flag": "no such option"
+  },
+
+  "guards_text": {
+    "title": "guards are enforced in CODE, not in text - they cannot be turned off",
+    "g1": "exploit only runs when READY (no hard blockers) AND --yes/confirmation",
+    "g2": "default command `id` (proof-of-access), max 14 bytes, no chaining",
+    "g3": "--revshell is NOT in the parser and is blocked at the runner level",
+    "g4": "all requests use the same stealth transport (consistent JA3)",
+    "g5": "identity-only command whitelist; bash/nc/curl permanently blocked"
+  },
+
+  "banner": {
+    "lab_note": "authorized targets only. see SECURITY.md"
+  },
+
+  "ui": {
+    "lang_title": "Select interface language  ·  Pilih bahasa antarmuka",
+    "lang_id": "Bahasa Indonesia",
+    "lang_en": "English",
+    "choose": "Enter choice",
+    "invalid": "Invalid choice, please try again",
+    "mode_title": "Choose a mode",
+    "m_detect": "Detect    — fingerprint a target (read-only)",
+    "m_preflight": "Preflight — readiness score",
+    "m_exploit": "Exploit   — run the RCE chain",
+    "m_scan": "Scan      — many targets from a file",
+    "m_shell": "Shell     — generate a password-protected webshell",
+    "m_builds": "Builds    — support table per build",
+    "m_advisories": "Advisories— CVE notes & fix floors",
+    "m_version": "Version   — check for updates",
+    "m_exit": "Exit",
+    "ask_url": "Target URL",
+    "ask_list": "Target list file",
+    "ask_cmd": "Proof command (identity-only, max 14 bytes)",
+    "ask_threads": "Threads",
+    "ask_out": "Output folder",
+    "ask_ttl": "TTL in hours",
+    "ask_commands": "Command whitelist (comma-separated)",
+    "ask_yes": "Target is LIVE. Continue? [y/N]",
+    "press_enter": "Press Enter to continue",
+    "goodbye": "Authorized use only. Goodbye.",
+    "back": "Back to menu",
+    "results": "Results",
+    "section_hint": "type the number, then press Enter"
+  }
+}

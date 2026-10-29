@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual env
+.venv/
+venv/
+
+# Hasil run (jangan ikut ter-commit)
+out/
+shell/
+*.jsonl
+proof*.txt
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store

@@ -1,0 +1,257 @@
+{
+  "meta": {
+    "name": "Bahasa Indonesia",
+    "code": "id",
+    "fallback": "en"
+  },
+
+  "app": {
+    "title": "P H P 2 S H E L L",
+    "subtitle": "toolkit terpadu",
+    "tagline": "PHP session.upload_progress stale-state UAF  ->  RCE tanpa autentikasi",
+    "tested": "diuji di sini",
+    "detected": "terdeteksi",
+    "full_chain": "rantai penuh",
+    "diff_chain": "rantai beda, tidak dijalankan",
+    "fix_floor": "lantai-perbaikan",
+    "last_vulnerable": "terakhir rentan",
+    "mode": "mode",
+    "ja3": "ja3",
+    "delay": "jeda",
+    "stealth": "stealth",
+    "stealth_on": "curl_cffi JA3 impersonate",
+    "stealth_off": "fallback urllib - MUDAH TERDETEKSI (pip install curl_cffi)",
+    "chain_engine": "mesin rantai",
+    "lang_label": "bahasa",
+    "language_switch_hint": "ganti bahasa: --lang id | --lang en   (atau env P2S_LANG)"
+  },
+
+  "usage": {
+    "modes": "mode",
+    "quick": "cepat",
+    "help": "bantuan",
+    "guards": "pagar & peringatan",
+    "details": "rincian"
+  },
+
+  "modes": {
+    "scan": "baca targets.txt -> detect -> preflight -> (opsional) exploit -> laporan",
+    "detect": "satu/lebih URL, deteksi saja (non-destruktif)",
+    "preflight": "satu URL, skor kesiapan exploit",
+    "exploit": "satu URL, langsung ke mesin rantai internal (READY + konfirmasi)",
+    "shell": "generator webshell berpassword (bukan uploader)",
+    "builds": "tampilkan build PHP mana yang RCE / hanya bocor / belum terbukti",
+    "advisories": "tampilkan advisori CVE dan lantai-perbaikan",
+    "version": "cek versi terhadap rilis publik"
+  },
+
+  "verdict": {
+    "vulnerable": "rentan",
+    "patched": "sudah-patch",
+    "eol": "eol",
+    "unknown": "tidak-diketahui",
+    "inconclusive": "tidak-pasti",
+    "blocked": "terblokir",
+    "ready": "SIAP",
+    "not_ready": "TIDAK-SIAP"
+  },
+
+  "state": {
+    "on": "nyala",
+    "off": "mati",
+    "unknown": "tidak-diketahui",
+    "yes": "ya",
+    "no": "tidak",
+    "none": "tidak-ada"
+  },
+
+  "detect": {
+    "probing": "memeriksa",
+    "php_version": "versi php",
+    "server": "server",
+    "sapi": "sapi",
+    "reachable": "terjangkau",
+    "upload_progress": "upload_progress",
+    "display_errors": "display_errors",
+    "memory_limit": "memory_limit",
+    "oom_probe": "probe oom",
+    "oom_enabled": "aktif (verdict masih unknown/eol)",
+    "oom_disabled": "nonaktif (--no-oom)",
+    "oom_skipped_patched": "dilewati (versi terbaca >= lantai-perbaikan)",
+    "oom_verdict": "sinyal oom",
+    "oom_fatal_parser": "fatal-di-parser",
+    "oom_empty_500": "diferensial-500-kosong",
+    "oom_worker_abort": "worker-abort (502/503/504)",
+    "oom_inconclusive_high_limit": "memory_limit terlalu tinggi untuk mencapai OOM (tidak-pasti)",
+    "oom_post_max_guard": "guard post_max_size (BUKAN sinyal bug)",
+    "reading_version": "membaca versi php",
+    "done": "deteksi selesai",
+    "failed": "deteksi gagal"
+  },
+
+  "preflight": {
+    "score": "skor kesiapan",
+    "components": "komponen",
+    "blockers": "penghalang",
+    "no_blockers": "tidak ada penghalang keras",
+    "server_down": "server tidak terjangkau",
+    "already_patched": "versi terbaca sudah-patch",
+    "support_level": "tingkat dukungan",
+    "willing_continue": "deteksi = informasi, bukan gerbang"
+  },
+
+  "exploit": {
+    "confirm_prompt": "target AKTIF. lanjutkan? [y/N]: ",
+    "not_ready_abort": "target TIDAK siap. pakai --force untuk memaksa (tetap konfirmasi).",
+    "stage": "tahap",
+    "stage1": "bocoran heap",
+    "stage2": "bocoran basis libphp",
+    "stage3": "HashTable palsu -> zif_system",
+    "proof": "BUKTI",
+    "blind": "BUTA",
+    "blind_note": "perintah dieksekusi, tapi tidak ada kanal bukti di target aktif",
+    "memory_limit_read": "memory_limit {mb} MiB terbaca dari target; field 'big' disetel {send} MB",
+    "memory_limit_default": "memory_limit tidak terbaca (display_errors=Off); pakai default 12 MB",
+    "memory_limit_too_high": "memory_limit di atas 512 MB - rantai ini tidak akan jalan di sana",
+    "post_max_too_small": "body {mb} MB ditolak target sebelum skrip jalan - post_max_size terlalu kecil untuk tahap-1",
+    "failed": "rantai gagal",
+    "succeeded": "rantai berhasil",
+    "timeout": "batas waktu total rantai",
+    "retries": "percobaan ulang per tahap",
+    "rotating_worker": "merotasi worker untuk heap segar",
+    "elapsed": "waktu"
+  },
+
+  "fence": {
+    "title": "pagar perintah (tidak bisa dimatikan)",
+    "too_long": "perintah {n} byte, maksimal {max} byte",
+    "blocked_char": "operator diblokir: {ch}",
+    "not_whitelisted": "perintah '{cmd}' tidak ada di whitelist",
+    "revshell_blocked": "primitif reverse-shell diblokir di level runner",
+    "default_note": "perintah default adalah 'id' (desain bukti-akses)"
+  },
+
+  "shell_gen": {
+    "generating": "membuat webshell",
+    "written": "tersimpan",
+    "credentials": "berkas kredensial",
+    "bcrypt_note": "password disimpan sebagai bcrypt; plaintext TIDAK disimpan di shell",
+    "ttl": "masa berlaku",
+    "commands_whitelist": "whitelist perintah",
+    "local_test_hint": "uji lokal: php -l <berkas>   lalu   php -S 127.0.0.1:8099",
+    "upload_notice": "generator saja - tool ini TIDAK meng-upload shell"
+  },
+
+  "scanner": {
+    "loading": "memuat target",
+    "targets": "target",
+    "dedup": "duplikat dibuang",
+    "threads": "utas",
+    "scanning": "memindai",
+    "summary": "ringkasan",
+    "empty_list": "tidak ada target di daftar"
+  },
+
+  "report": {
+    "json_written": "laporan json tersimpan",
+    "csv_written": "laporan csv tersimpan",
+    "total": "total",
+    "exploited": "dieksploitasi",
+    "ready": "siap",
+    "no_results": "(tidak ada target)"
+  },
+
+  "updater": {
+    "local": "lokal",
+    "remote": "remote",
+    "status": "status",
+    "message": "pesan",
+    "repo": "repo",
+    "current": "sudah versi terbaru",
+    "update_available": "ada rilis lebih baru",
+    "unknown": "tidak bisa dicek (offline / kena rate-limit)",
+    "source": "sumber",
+    "cache_note": "di-cache 1 jam di out/version-check.json"
+  },
+
+  "builds": {
+    "table_head": "tabel dukungan per build",
+    "php": "php",
+    "arch": "arsitektur",
+    "support": "dukungan",
+    "note": "catatan",
+    "total_line": "total {n} build: {rce} RCE, {leak} hanya-bocor, {no} belum-terbukti",
+    "level_rce": "RCE",
+    "level_leak": "BOCOR",
+    "level_no": "TIDAK"
+  },
+
+  "advisory": {
+    "title": "Advisori CVE",
+    "cve": "cve",
+    "class": "kelas",
+    "trigger": "pemicu",
+    "requests": "request",
+    "status": "status",
+    "implemented": "diimplementasikan (rantai penuh 0->RCE)",
+    "detect_only": "hanya deteksi/preflight (tidak dijalankan)",
+    "patched_rebuilt": "patch dibangun ulang 22 Okt 2026 - cek TANGGAL BUILD paket, bukan hanya string versi",
+    "cve_115560": "CVE-2026-115560 (mismatch serialize_handler) TIDAK ditutup oleh lantai-perbaikan di atas",
+    "memory_limit_note": "memory_limit=-1 BUKAN mitigasi lengkap (GHSA-w8hw-w9fx-j79w)",
+    "upload_progress_note": "session.upload_progress.enabled=0 hanya menutup 109618 (+115560), BUKAN 109619",
+    "in_wild": "eksploitasi nyata terjadi sebelum patch (percobaan pertama 17 Okt 2026)"
+  },
+
+  "errors": {
+    "url_scheme": "URL harus diawali http:// atau https:// (didapat: {url})",
+    "unknown_mode": "mode tidak dikenal: {mode}",
+    "list_not_found": "daftar target tidak ditemukan: {path}",
+    "transport_init": "inisialisasi transport gagal",
+    "unexpected": "kesalahan tak terduga",
+    "no_such_flag": "opsi tidak ada"
+  },
+
+  "guards_text": {
+    "title": "pagar ditegakkan di KODE, bukan di teks - tidak bisa dimatikan",
+    "g1": "exploit hanya jalan bila SIAP (tanpa penghalang keras) DAN --yes/konfirmasi",
+    "g2": "perintah default `id` (bukti-akses), maks 14 byte, tanpa chaining",
+    "g3": "--revshell TIDAK ADA di parser dan diblokir di level runner",
+    "g4": "semua request memakai transport stealth yang sama (JA3 konsisten)",
+    "g5": "whitelist perintah identitas saja; bash/nc/curl diblokir permanen"
+  },
+
+  "banner": {
+    "lab_note": "hanya target berizin. lihat SECURITY.md"
+  },
+
+  "ui": {
+    "lang_title": "Pilih bahasa antarmuka  ·  Select interface language",
+    "lang_id": "Bahasa Indonesia",
+    "lang_en": "English",
+    "choose": "Masukkan pilihan",
+    "invalid": "Pilihan tidak valid, silakan coba lagi",
+    "mode_title": "Pilih mode",
+    "m_detect": "Deteksi   — sidik jari target (baca-saja)",
+    "m_preflight": "Preflight — skor kesiapan",
+    "m_exploit": "Exploit   — jalankan rantai RCE",
+    "m_scan": "Pindai    — banyak target dari berkas",
+    "m_shell": "Shell     — buat webshell berpassword",
+    "m_builds": "Build     — tabel dukungan per build",
+    "m_advisories": "Advisori  — catatan CVE & lantai-perbaikan",
+    "m_version": "Versi     — cek pembaruan",
+    "m_exit": "Keluar",
+    "ask_url": "URL target",
+    "ask_list": "Berkas daftar target",
+    "ask_cmd": "Perintah bukti (identitas saja, maks 14 byte)",
+    "ask_threads": "Jumlah utas",
+    "ask_out": "Folder keluaran",
+    "ask_ttl": "Masa berlaku (jam)",
+    "ask_commands": "Whitelist perintah (dipisah koma)",
+    "ask_yes": "Target AKTIF. Lanjutkan? [y/N]",
+    "press_enter": "Tekan Enter untuk melanjutkan",
+    "goodbye": "Hanya untuk yang berizin. Sampai jumpa.",
+    "back": "Kembali ke menu",
+    "results": "Hasil",
+    "section_hint": "ketik angkanya, lalu tekan Enter"
+  }
+}
